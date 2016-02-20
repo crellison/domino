@@ -16,7 +16,8 @@ public class Mesa {
 
 	// constructor
 	public Mesa(int num_dots) {
-		monton = new ArrayList<Ficha>(28);
+		int num_fichas = ((num_dots*num_dots +(3*num_dots)+2)/2);
+		monton = new ArrayList<Ficha>(num_fichas);
 		colocadas = new DobleCola<Ficha>();
 		for (int i=0;i<=6;i++) {
 			for (int j=0;j<=i;j++) {

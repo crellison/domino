@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Jugador {
 
 	// atributos
-	private ArrayList<Ficha> fichas;
+	protected ArrayList<Ficha> fichas;
 	private String nombre;
 
 	// max num de fichas en jugador = 22
@@ -15,6 +15,8 @@ public abstract class Jugador {
 	}
 
 	// metodos de instancia
+
+	// devuelve un booleano si or no puede jugar
 	public boolean puedeJugar(Mesa m) {
 		int izda = m.recogeIzda();
 		int dcha = m.recogeDcha();
@@ -23,6 +25,14 @@ public abstract class Jugador {
 			puede = puede||temp.contieneNum(izda)||temp.contieneNum(dcha);
 		} return puede;
 	}
+	// dice si o no puede usar una ficha especifica
+	public boolean puedeUsar(Mesa m, Ficha f) {
+		int izda = m.recogeIzda();
+		int dcha = m.recogeDcha();
+		boolean puede = f.contieneNum(izda)||f.contieneNum(dcha);
+		return puede;
+	}
+	// suma de las fichas
 	public int sumaFichas() {
 		int sum = 0;
 		for (Ficha temp : fichas) {
