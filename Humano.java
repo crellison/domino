@@ -7,6 +7,8 @@ public class Humano extends Jugador {
 	// NB - super() llama el constructor del superclass (Jugador)
 
 	// metodos de instancia
+
+	// funcion ayudante a jugarFicha
 	public Ficha elegirFicha(Mesa m) {
 		Scanner input = new Scanner(System.in);
 		int indice = 0;
@@ -23,6 +25,7 @@ public class Humano extends Jugador {
 		} while (valido==false);
 		return fichas.remove(indice);
 	}
+	// usa aportacion del jugador para elegir y jugar una ficha
 	public Mesa jugarFicha(Mesa m) {
 		Ficha elegida = new Ficha(7,7);
 		do {elegida = elegirFicha(m);}
@@ -51,7 +54,6 @@ public class Humano extends Jugador {
 				input.next();
 			}
 		} while(valido == false);
-
 		return m;
 	}
 	public void recibirFicha(Ficha f) {fichas.add(f);}

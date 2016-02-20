@@ -41,6 +41,15 @@ public abstract class Jugador {
 	}
 	public int numFichas() {return fichas.size();}
 	public boolean finalizado() {return fichas.isEmpty();}
+	public void mostrarFichas() {
+		for (Ficha temp : fichas) {
+			System.out.print(temp.toString()+" ");
+		} System.out.print("\n");
+		int tamano = fichas.size();
+		for (int i=0;1<tamano;i++) {
+			System.out.print("  "+i+"   ");
+		}
+	}
 
 	// metodos abstractos
 	public abstract Ficha elegirFicha(Mesa m);
