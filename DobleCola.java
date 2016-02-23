@@ -21,7 +21,7 @@ public class DobleCola<E> {
 		// metodo ayudante a mostrarDcha()
 		public void mostrarReves() {
 			if (izquierda != null) {izquierda.mostrarReves();}
-			System.out.print(dato.toString()+" ");
+			if (dato != null) {System.out.print(dato.toString()+" ");}
 		}
 		public E dato() {return dato;}
 	}
