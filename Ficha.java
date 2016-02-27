@@ -20,6 +20,12 @@ public class Ficha {
 	}
 	// devuelve el valor
 	public int valor() {return izda+dcha;}
+	// valor funcion especifica a la clase Maquino()
+	// usado para ordenar sus fichas para el AI
+	public int maquinoValor() {
+		if (esDoble()) {return valor()+4;}
+		else {return valor();}
+	}
 	// true si el num esta en la ficha, false si no
 	public boolean contieneNum(int n) {return n==izda || n==dcha;}
 	// true si izda=dcha

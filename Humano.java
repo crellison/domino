@@ -26,8 +26,24 @@ public class Humano extends Jugador {
 		return fichas.remove(indice);
 	}
 	// usa aportacion del jugador para elegir y jugar una ficha
-	public Mesa jugarFicha(Mesa m) {
-		Ficha elegida = new Ficha(7,7);
+	public Mesa jugar(Mesa m) {
+		if (m.vaciaColocadas()) { // si es el primer turno, juega su doble de mayor valor
+			System.out.println("Elige su doble de mayor valor");
+			Ficha elegida = maxDoble();
+			fichas.remove(maxDoble());
+			m.anadirColocadas(elegida,0);
+			return m;
+		}
+		// do { // si no es posible jugar, sacar fichas del monton hasta que puedes
+		// 	if (m.vaciaRobar()) {return m;} 
+		// 	// si el monton esta vacia, el turno esta terminada
+		// 	recibirFicha(m.sacarRobar());
+		// } while (!puedeJugar(m));
+		if (!puedeJugar(m)) {
+			if (!m.vaciaRobar()) {recibirFicha(m.sacarRobar());}
+			return m;
+		}
+		Ficha elegida = new Ficha(-1,-1);
 		do {elegida = elegirFicha(m);}
 		while (puedeUsar(m,elegida)==false);
 		Scanner input = new Scanner(System.in);
@@ -56,5 +72,6 @@ public class Humano extends Jugador {
 		} while(valido == false);
 		return m;
 	}
+	// anade una ficha a las fichas del humano
 	public void recibirFicha(Ficha f) {fichas.add(f);}
 }
