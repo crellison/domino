@@ -48,13 +48,6 @@ public class Maquino extends Jugador {
 			return m;
 		}
 		Ficha ficha = elegirFicha(m);
-		// if (ficha == new Ficha(-1,-1)) {
-		// 	do {
-		// 		if (m.vaciaRobar()) {return m;} 
-		// 		// si el monton esta vacia, el turno esta terminada
-		// 		recibirFicha(m.sacarRobar());
-		// 	} while (!puedeJugar(m));
-		// }
 		int izda = m.recogeIzda();
 		int dcha = m.recogeDcha();
 		if (ficha.contieneNum(izda)) {
