@@ -34,11 +34,6 @@ public class Humano extends Jugador {
 			m.anadirColocadas(elegida,0);
 			return m;
 		}
-		// do { // si no es posible jugar, sacar fichas del monton hasta que puedes
-		// 	if (m.vaciaRobar()) {return m;} 
-		// 	// si el monton esta vacia, el turno esta terminada
-		// 	recibirFicha(m.sacarRobar());
-		// } while (!puedeJugar(m));
 		if (!puedeJugar(m)) {
 			if (!m.vaciaRobar()) {recibirFicha(m.sacarRobar());}
 			return m;

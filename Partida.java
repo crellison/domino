@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.IndexOutOfBoundsException;
+import java.lang.NumberFormatException;
 
 public class Partida {
 
@@ -10,6 +11,13 @@ public class Partida {
 
 	// constructor
 	public Partida(int numJugadores, int numMaquinos) {
+		if (numJugadores>4 || numJugadores<1) {
+			throw new IndexOutOfBoundsException("\nEl numero de jugadores debe ser entre 1 y 4");
+		}
+		if (numJugadores<numMaquinos || numMaquinos<0) {
+			throw new IndexOutOfBoundsException("\nEl numero de maquinos debe ser "+
+			"entre 0 y el numero de jugadores");
+		}
 		m = new Mesa();
 		jugadores = new ArrayList<Jugador>(numJugadores);
 		Scanner input = new Scanner(System.in);
@@ -67,11 +75,11 @@ public class Partida {
 		for (int i=0;i<len;i++) {
 			Jugador temp = jugadores.get(i);
 			turno(i);
-			if (temp.finalizado()) {return;}
+			if (temp.finalizado()) {break;}
 			if (empate() == true) {
 				System.out.println("La partida esta un empate\n");
 				mostrarPuntos();
-				return;
+				break;
 			}
 		}
 	}
@@ -159,7 +167,20 @@ public class Partida {
             "\ncommand-string es un String de dos enteros"+
             "\nPrimero entero determina el numero de jugadores (1,2,3,4)"+
             "\nSegundo entero determina el numero de maquinos (0, ..., numJugadores)\n");
-        } else {
+        } else if (args.length==2) {
+        	int entrada;
+        	try {
+        		entrada = Integer.parseInt(args[0]);
+    		} catch (NumberFormatException e) {
+		        System.err.println("Error: Entrada " + args[0] + " debe ser entero.");
+		        System.exit(1);
+		    }
+		    try {
+        		entrada = Integer.parseInt(args[1]);
+    		} catch (NumberFormatException e) {
+		        System.err.println("Error: Entrada " + args[1] + " debe ser entero.");
+		        System.exit(1);
+		    }
 			Partida miPartida = new Partida(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 			miPartida.iniciar();
 			miPartida.hacerJuego();
